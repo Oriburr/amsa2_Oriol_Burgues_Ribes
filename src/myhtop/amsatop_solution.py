@@ -45,7 +45,9 @@ class Amsatop(Htop):
 
             is_kthread = (stat.flags & PF_KTHREAD) != 0
             task_type = TaskType.KTHREAD if is_kthread else TaskType.PROCESS
-            tasks.append((self._build_process(stat, task_type, with_priority), pid_path))
+            tasks.append(
+                (self._build_process(stat, task_type, with_priority), pid_path)
+            )
 
             if not is_kthread:
                 tasks.extend(self._collect_threads(pid, pid_path, with_priority))
